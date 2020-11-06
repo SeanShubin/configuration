@@ -1,0 +1,34 @@
+{
+  reportDir console/target/detangled
+  searchPaths
+  [
+    ./console/target/configuration.jar
+  ]
+  level 2
+  startsWith
+  {
+    include
+    [
+      [
+        com
+        seanshubin
+        configuration
+      ]
+    ]
+    exclude []
+    drop
+    [
+      [
+        com
+        seanshubin
+        configuration
+      ]
+    ]
+  }
+  ignoreFiles []
+  canFailBuild true
+  ignoreJavadoc true
+  logTiming true
+  logEffectiveConfiguration true
+  allowedInCycle console/detangler-allowed-in-cycle.txt
+}

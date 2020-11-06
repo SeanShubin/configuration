@@ -1,0 +1,53 @@
+{
+  prefix [com seanshubin]
+  name [ configuration ]
+  description 'Configuration utilities'
+  version 0.1.0
+  language 'kotlin'
+  developer {
+    name 'Sean Shubin'
+    githubName SeanShubin
+    mavenUserName SeanShubin
+    organization 'Sean Shubin'
+    url http://seanshubin.com/
+  }
+  dependencies {
+    stdlib {
+      group org.jetbrains.kotlin
+      artifact kotlin-stdlib-jdk8
+    }
+    coroutines {
+      group org.jetbrains.kotlinx
+      artifact kotlinx-coroutines-core
+    }
+    test {
+      group org.jetbrains.kotlin
+      artifact kotlin-test-junit
+      scope test
+    }
+    arrow {
+        group    io.arrow-kt
+        artifact arrow-core
+    }
+    jackson {
+        group com.fasterxml.jackson.module
+        artifact jackson-module-kotlin
+    }
+    jackson-time {
+        group com.fasterxml.jackson.datatype
+        artifact jackson-datatype-jsr310
+    }
+  }
+  global [ stdlib test ]
+  modules {
+    domain  [ coroutines jackson ]
+    console [ domain ]
+    prototype [ jackson ]
+  }
+  detangler [console]
+  consoleEntryPoint {
+    console com.seanshubin.configuration.console.EntryPoint
+  }
+  javaVersion 12
+  deployableToMavenCentral true
+}
