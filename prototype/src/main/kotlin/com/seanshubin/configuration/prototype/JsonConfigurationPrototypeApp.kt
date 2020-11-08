@@ -15,13 +15,14 @@ object JsonConfigurationPrototypeApp {
     val charset = StandardCharsets.UTF_8
     val kotlinModule: Module = KotlinModule()
     val objectMapper: ObjectMapper = ObjectMapper().registerModule(kotlinModule).enable(SerializationFeature.INDENT_OUTPUT)
-    data class TwoStringConfiguration(val a:String, val b:String)
+
+    data class TwoStringConfiguration(val a: String, val b: String)
 
     @JvmStatic
     fun main(args: Array<String>) {
         val defaultA = "default-a"
         val defaultB = "default-b"
-        val default = TwoStringConfiguration(defaultA,defaultB)
+        val default = TwoStringConfiguration(defaultA, defaultB)
         val baseName = "generated/prototype/"
         val base = Paths.get(baseName)
         val originalPath = base.resolve("original.json")
@@ -31,15 +32,15 @@ object JsonConfigurationPrototypeApp {
         println(effective)
     }
 
-    fun load(path: Path, default:TwoStringConfiguration):TwoStringConfiguration{
-        return if(Files.exists(path)) loadExisting(path, default)
+    fun load(path: Path, default: TwoStringConfiguration): TwoStringConfiguration {
+        return if (Files.exists(path)) loadExisting(path, default)
         else {
             store(path, default)
             load(path, default)
         }
     }
 
-    fun loadExisting(path:Path, default: TwoStringConfiguration):TwoStringConfiguration{
+    fun loadExisting(path: Path, default: TwoStringConfiguration): TwoStringConfiguration {
         val fileText = Files.readString(path, charset)
         val fileAst = objectMapper.readValue<Any?>(fileText)
         val defaultText = objectMapper.writeValueAsString(default)
@@ -50,8 +51,8 @@ object JsonConfigurationPrototypeApp {
         return configuration
     }
 
-    fun store(path:Path, value:TwoStringConfiguration){
-        if(!Files.exists(path.parent)){
+    fun store(path: Path, value: TwoStringConfiguration) {
+        if (!Files.exists(path.parent)) {
             Files.createDirectories(path.parent)
         }
         val text = objectMapper.writeValueAsString(value)

@@ -20,10 +20,11 @@ class JsonUtilTest {
     fun Any?.toPrettyJson(): String = pretty.writeValueAsString(this)
     fun Any?.toStringAndType(): String = "$this:${this?.javaClass?.simpleName ?: "null"}"
     fun Any?.toKotlinLiteral(): String =
-            when(this){
+            when (this) {
                 is String -> "\"$this\""
                 else -> toString()
             }
+
     fun mapToPrimitiveEntries(path: List<String>, map: Map<Any?, Any?>): List<Pair<List<String>, Any?>> {
         val keys = map.keys
         return keys.flatMap {
@@ -154,11 +155,11 @@ class JsonUtilTest {
         val primitiveMap = exampleMap.toPrimitiveMap()
         primitiveMap.map { entry ->
             val (key, value) = entry
-            val keyString = key.joinToString(",", "listOf(", ")", transform = {it.toKotlinLiteral()})
+            val keyString = key.joinToString(",", "listOf(", ")", transform = { it.toKotlinLiteral() })
             val valueString = value.toKotlinLiteral()
             "verify($keyString, $valueString)"
         }.forEach(::println)
-        fun verify(path:List<String>, expected:Any?){
+        fun verify(path: List<String>, expected: Any?) {
             val actual = primitiveMap[path]
             assertEquals(expected, actual)
         }
@@ -170,37 +171,37 @@ class JsonUtilTest {
         verify(listOf("f"), true)
         verify(listOf("g"), false)
         verify(listOf("h"), null)
-        verify(listOf("i","a"), 2147483647)
-        verify(listOf("i","b"), 9223372036854775807)
-        verify(listOf("i","c"), 1.7976931348623157E308)
-        verify(listOf("i","d"), 0)
-        verify(listOf("i","e"), "string value")
-        verify(listOf("i","f"), true)
-        verify(listOf("i","g"), false)
-        verify(listOf("i","h"), null)
-        verify(listOf("j","0","a"), 2147483647)
-        verify(listOf("j","0","b"), 9223372036854775807)
-        verify(listOf("j","0","c"), 1.7976931348623157E308)
-        verify(listOf("j","0","d"), 0)
-        verify(listOf("j","0","e"), "string value")
-        verify(listOf("j","0","f"), true)
-        verify(listOf("j","0","g"), false)
-        verify(listOf("j","0","h"), null)
-        verify(listOf("j","1","0"), 2147483647)
-        verify(listOf("j","1","1"), 9223372036854775807)
-        verify(listOf("j","1","2"), 1.7976931348623157E308)
-        verify(listOf("j","1","3"), 0)
-        verify(listOf("j","1","4"), "string value")
-        verify(listOf("j","1","5"), true)
-        verify(listOf("j","1","6"), false)
-        verify(listOf("j","1","7"), null)
-        verify(listOf("j","2"), 2147483647)
-        verify(listOf("j","3"), 9223372036854775807)
-        verify(listOf("j","4"), 1.7976931348623157E308)
-        verify(listOf("j","5"), 0)
-        verify(listOf("j","6"), "string value")
-        verify(listOf("j","7"), true)
-        verify(listOf("j","8"), false)
-        verify(listOf("j","9"), null)
+        verify(listOf("i", "a"), 2147483647)
+        verify(listOf("i", "b"), 9223372036854775807)
+        verify(listOf("i", "c"), 1.7976931348623157E308)
+        verify(listOf("i", "d"), 0)
+        verify(listOf("i", "e"), "string value")
+        verify(listOf("i", "f"), true)
+        verify(listOf("i", "g"), false)
+        verify(listOf("i", "h"), null)
+        verify(listOf("j", "0", "a"), 2147483647)
+        verify(listOf("j", "0", "b"), 9223372036854775807)
+        verify(listOf("j", "0", "c"), 1.7976931348623157E308)
+        verify(listOf("j", "0", "d"), 0)
+        verify(listOf("j", "0", "e"), "string value")
+        verify(listOf("j", "0", "f"), true)
+        verify(listOf("j", "0", "g"), false)
+        verify(listOf("j", "0", "h"), null)
+        verify(listOf("j", "1", "0"), 2147483647)
+        verify(listOf("j", "1", "1"), 9223372036854775807)
+        verify(listOf("j", "1", "2"), 1.7976931348623157E308)
+        verify(listOf("j", "1", "3"), 0)
+        verify(listOf("j", "1", "4"), "string value")
+        verify(listOf("j", "1", "5"), true)
+        verify(listOf("j", "1", "6"), false)
+        verify(listOf("j", "1", "7"), null)
+        verify(listOf("j", "2"), 2147483647)
+        verify(listOf("j", "3"), 9223372036854775807)
+        verify(listOf("j", "4"), 1.7976931348623157E308)
+        verify(listOf("j", "5"), 0)
+        verify(listOf("j", "6"), "string value")
+        verify(listOf("j", "7"), true)
+        verify(listOf("j", "8"), false)
+        verify(listOf("j", "9"), null)
     }
 }

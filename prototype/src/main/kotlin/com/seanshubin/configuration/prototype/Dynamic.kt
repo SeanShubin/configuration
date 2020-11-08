@@ -10,7 +10,7 @@ object Dynamic {
             return mergeMaps(left, right)
         } else {
             return right
-        } 
+        }
     }
 
     private fun mergeMaps(left: Map<Any?, Any?>, right: Map<Any?, Any?>): Map<Any?, Any?> {
@@ -28,6 +28,7 @@ object Dynamic {
         }
         return pairs.filterNotNull().toMap()
     }
+
     private fun Any?.toStringAndType(): String = "$this:${this?.javaClass?.simpleName ?: "null"}"
 
 }
