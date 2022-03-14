@@ -1,4 +1,4 @@
-package com.seanshubin.configuration.domain
+package com.seanshubin.configuration.dynamic
 
 import com.fasterxml.jackson.databind.Module
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -14,11 +14,11 @@ object DynamicallyTyped {
     val charset = StandardCharsets.UTF_8
     val kotlinModule: Module = KotlinModule()
     val objectMapper: ObjectMapper = ObjectMapper()
-            .registerModule(kotlinModule)
-            .enable(SerializationFeature.INDENT_OUTPUT)
+        .registerModule(kotlinModule)
+        .enable(SerializationFeature.INDENT_OUTPUT)
 
     fun merge(left: Any?, right: Any?): Any? =
-            mergeWithPath(emptyList(), left, right)
+        mergeWithPath(emptyList(), left, right)
 
     private fun typeCheckedAssign(path: List<Any?>, left: Any?, right: Any?): Any? {
         return if (left == null) {
@@ -38,10 +38,10 @@ object DynamicallyTyped {
     }
 
     private fun mergeWithPath(path: List<Any?>, left: Any?, right: Any?): Any? =
-            if (left is Map<*, *> && right is Map<*, *>) {
-                @Suppress("UNCHECKED_CAST")
-                mergeMap(path, left as Map<Any?, Any?>, right as Map<Any?, Any?>)
-            } else typeCheckedAssign(path, left, right)
+        if (left is Map<*, *> && right is Map<*, *>) {
+            @Suppress("UNCHECKED_CAST")
+            mergeMap(path, left as Map<Any?, Any?>, right as Map<Any?, Any?>)
+        } else typeCheckedAssign(path, left, right)
 
     private fun mergeMap(path: List<Any?>, left: Map<Any?, Any?>, right: Map<Any?, Any?>): Map<Any?, Any?> {
         val keys = (left.keys + right.keys).distinct()

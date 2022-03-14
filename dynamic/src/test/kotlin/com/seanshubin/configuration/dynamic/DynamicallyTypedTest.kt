@@ -1,8 +1,8 @@
-package com.seanshubin.configuration.domain
+package com.seanshubin.configuration.dynamic
 
-import com.seanshubin.configuration.domain.DynamicallyTyped.createDynamic
-import com.seanshubin.configuration.domain.DynamicallyTyped.merge
-import com.seanshubin.configuration.domain.DynamicallyTyped.mergeTypedWithDynamic
+import com.seanshubin.configuration.dynamic.DynamicallyTyped.createDynamic
+import com.seanshubin.configuration.dynamic.DynamicallyTyped.merge
+import com.seanshubin.configuration.dynamic.DynamicallyTyped.mergeTypedWithDynamic
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
@@ -30,23 +30,23 @@ class DynamicallyTypedTest {
     @Test
     fun mergeMap() {
         val left = mapOf(
-                "a" to mapOf(
-                        "b" to mapOf(
-                                "c" to 1,
-                                "d" to 2,
-                                "e" to 3)))
+            "a" to mapOf(
+                "b" to mapOf(
+                    "c" to 1,
+                    "d" to 2,
+                    "e" to 3)))
         val right = mapOf(
-                "a" to mapOf(
-                        "b" to mapOf(
-                                "d" to null,
-                                "e" to 4,
-                                "f" to 5)))
+            "a" to mapOf(
+                "b" to mapOf(
+                    "d" to null,
+                    "e" to 4,
+                    "f" to 5)))
         val expected = mapOf(
-                "a" to mapOf(
-                        "b" to mapOf(
-                                "c" to 1,
-                                "e" to 4,
-                                "f" to 5)))
+            "a" to mapOf(
+                "b" to mapOf(
+                    "c" to 1,
+                    "e" to 4,
+                    "f" to 5)))
         val actual = merge(left, right)
         assertEquals(expected, actual)
     }
@@ -78,12 +78,12 @@ class DynamicallyTypedTest {
         val expectedBottomRight = Point(3, 4)
         val expected = Rectangle(expectedTopLeft, expectedBottomRight)
         val dynamic = mapOf(
-                "topLeft" to mapOf(
-                        "x" to 1,
-                        "y" to 2),
-                "bottomRight" to mapOf(
-                        "x" to 3,
-                        "y" to 4))
+            "topLeft" to mapOf(
+                "x" to 1,
+                "y" to 2),
+            "bottomRight" to mapOf(
+                "x" to 3,
+                "y" to 4))
         val actual = createDynamic<Rectangle>(dynamic)
         assertEquals(expected, actual)
     }

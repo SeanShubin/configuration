@@ -2,7 +2,7 @@
   reportDir console/target/detangled
   searchPaths
   [
-    ./console/target/configuration.jar
+    ./console/target/configuration-console.jar
   ]
   level 2
   startsWith

@@ -38,14 +38,14 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
-                    <finalName>configuration</finalName>
+                    <finalName>configuration-console</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.seanshubin.configuration.console.EntryPointKt</mainClass>
+                            <mainClass>com.seanshubin.configuration.console.EntryPoint</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -4,12 +4,12 @@
 **/*.ipr
 **/*.iws
 **/target
-/generated
-/local-config
-/secrets
+cdk.out
+generated
+secrets
+local-config
 *~
 *#
 .#*
 .DS_Store
 dependency-reduced-pom.xml
-/cdk.out
