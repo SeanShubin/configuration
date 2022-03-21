@@ -1,8 +1,8 @@
 {
-  reportDir console/target/detangled
+  reportDir app/target/detangled
   searchPaths
   [
-    ./console/target/configuration-console.jar
+    ./app/target/configuration-app.jar
   ]
   level 2
   startsWith
@@ -30,5 +30,5 @@
   ignoreJavadoc true
   logTiming true
   logEffectiveConfiguration true
-  allowedInCycle console/detangler-allowed-in-cycle.txt
+  allowedInCycle app/detangler-allowed-in-cycle.txt
 }

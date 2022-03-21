@@ -1,4 +1,4 @@
-package com.seanshubin.configuration.console
+package com.seanshubin.configuration.app
 
 object EntryPoint {
     @JvmStatic

@@ -39,7 +39,7 @@ class JsonConfigApp(
         ex.printStackTrace()
         println("syntax:")
         println()
-        println("java -jar json-console-app.jar file direction type value path...")
+        println("java -jar configuration-app.jar file direction type value path...")
         println()
         println("file     : the json file")
         println("direction: GET or SET")

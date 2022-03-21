@@ -56,7 +56,7 @@ enum class Type {
     },
     CHAR {
         override fun fromString(s: String): Any =
-            if(s.length != 1) s[0]
+            if(s.length == 1) s[0]
             else throw RuntimeException("Expected a single code unit, got ${s.length}")
     },
     BOOLEAN {

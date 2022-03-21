@@ -40,16 +40,16 @@
   }
   global [ stdlib test ]
   modules {
+    app       [ domain ]
     domain    [ coroutines jackson contract ]
-    console   [ domain ]
     dynamic   [ jackson ]
     prototype [ jackson ]
     contract  []
   }
-  detangler [console]
+  detangler [app]
   consoleEntryPoint {
-    console com.seanshubin.configuration.console.EntryPoint
+    app com.seanshubin.configuration.app.EntryPoint
   }
-  javaVersion 12
+  javaVersion 17
   deployableToMavenCentral true
 }
